@@ -1,0 +1,23 @@
+import json
+import random
+
+#讀取JSON檔案
+#參考 https://ithelp.ithome.com.tw/articles/10216970
+with open('Netflix_Mylist_link.jscsrc',newline='') as f:
+    data = json.load(f)
+    #辨識檔案型態
+    #print(type(data))
+    
+    #len()幫助計算list清單裡面有幾部片
+    print('There is',len(data),'films on your Netflix watchlist') 
+
+#隨機從JSON擋裡面選取一個list，
+#參考 https://www.delftstack.com/zh-tw/howto/python/python-randomly-select-from-list/
+def selectRandom(data): 
+  return random.choice(data)  #use random.shuffle or random.simple instead of random.choice
+x = selectRandom(data)
+
+#列印片名以及電影連結，使用pop去把串列裡面的元素刪除並回傳。
+#原始串列會長這樣{"name": "The Way of the Househusband","link": "https://www.netflix.com/watch/81261669"}
+print('Why not try --',x.pop('name') ,'-- ?\nHere is the link: ', x.pop('link'))
+
